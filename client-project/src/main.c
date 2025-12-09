@@ -188,6 +188,15 @@ int main(int argc, char *argv[]) {
 
     request.type = request_string[0];
 
+    // Verifica che il tipo sia valido (t, h, w, p)
+    if (request.type != 't' && request.type != 'h' && 
+        request.type != 'w' && request.type != 'p') {
+        printf("Richiesta non valida\n");
+        closesocket(my_socket);
+        clearwinsock();
+        return -1;
+    }
+
     // Estrai la città (dopo lo spazio)
     char *city_start = space_pos + 1;
     
